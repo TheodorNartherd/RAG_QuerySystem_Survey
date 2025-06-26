@@ -1,0 +1,9 @@
+vanna
+python-dotenv
+qdrant-client
+openai
+fastembed
+sql_metadata
+streamlit
+tiktoken
+sqlglot
