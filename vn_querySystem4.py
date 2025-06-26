@@ -117,7 +117,7 @@ class VN_QuerySystem(Qdrant_VectorStore, OpenAI_Chat):
         self.graph = self.get_join_graph(db_name)
 
     def get_join_graph(self, db_name):
-        self.connect_to_sqlite(os.getenv('datasetLoc') + '/database/' + db_name + '/' + db_name + '.sqlite')
+        self.connect_to_sqlite(os.getenv('dbLoc') + '/' + db_name + '/' + db_name + '.sqlite')
         df_sqliteMaster = self.run_sql("SELECT tbl_name, sql FROM sqlite_master WHERE sql is not null and type='table'")
         
         joins = pd.Series(df_sqliteMaster.apply(lambda row: self.extract_joins(self.convert_ddlToSchema(row['sql']),row['tbl_name']), axis=1).dropna()).explode().tolist()
